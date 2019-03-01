@@ -1,3 +1,10 @@
-<p>
-  todo-list works!
-</p>
+<h1>Todo App</h1>
+
+<div *ngIf="todoListState$ | async as todoListState">
+  <mat-list>
+    <mat-list-item *ngFor="let todo of todoListState.todos">
+      {{todo.title}}
+    </mat-list-item>
+  </mat-list>
+
+</div>

@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { TodoListState, TodoState } from '../../../store/todo/todo.state';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import * as TodoAction from '../../../store/todo/todo.action';
+
+
 
 @Component({
   selector: 'app-todo-list',
@@ -7,9 +13,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoListComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {
+  constructor(
+    private store: Store<TodoListState>
+  ) {
   }
 
+
+  todoListState$: Observable<TodoState[]>;
+
+
+
+  ngOnInit() {
+
+    this.todoListState$ = this.store.select(state => state.todos);
+
+    this.store.dispatch(new TodoAction.GetTodos());
+    console.log("---------->", this.todoListState$)
+  }
 }
