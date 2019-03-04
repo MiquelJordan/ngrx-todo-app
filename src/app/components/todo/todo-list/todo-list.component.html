@@ -1,10 +1,36 @@
 <h1>Todo App</h1>
-
 <div *ngIf="todoListState$ | async as todoListState">
-  <mat-list>
-    <mat-list-item *ngFor="let todo of todoListState.todos">
-      {{todo.title}}
-    </mat-list-item>
+
+
+  <mat-list fxLayout="column" fxLayoutAlign="center stretch" style="background-color: darkkhaki">
+
+    <ng-container *ngFor="let todo of todoListState.todos">
+      <mat-list style="padding: 20px" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.status == false">
+        <h3>
+          {{todo.title}}
+
+        </h3>
+
+        <mat-checkbox (click)="onSelected(todo.id,todo.status)" [(checked)]="todo.status"></mat-checkbox>
+
+      </mat-list>
+      <mat-divider *ngIf="todo.status == false"></mat-divider>
+
+    </ng-container>
+
+    <ng-container *ngFor="let todo of todoListState.todos">
+
+      <mat-list style="padding: 20px" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.status == true">
+        <h3 style="text-decoration-line: line-through">
+          {{todo.title}}
+        </h3>
+        <mat-checkbox (click)="onSelected(todo.id,todo.status)" [(checked)]="todo.status"></mat-checkbox>
+      </mat-list>
+      <mat-divider *ngIf="todo.status == true"></mat-divider>
+    </ng-container>
+
   </mat-list>
+
+
 
 </div>

@@ -17,13 +17,17 @@ const defaultState: TodoListState = {
 }
 
 export function TodoReducer(state = defaultState, action: Action) {
-    console.log(state, action);
+    console.log("todo reducer", state, action);
 
     switch (action.type) {
 
         case TodoActions.GET_TODOS: {
 
-            return { ...state, loaded: false, loading: true };
+            return {
+                ...state,
+                loaded: false,
+                loading: true
+            };
         }
 
 
@@ -33,12 +37,38 @@ export function TodoReducer(state = defaultState, action: Action) {
                 ...state,
                 todos: [
                     ...action.payload,
-                    defaultTodoStates[0]
+                    ...defaultTodoStates
                 ],
                 loading: false
             };
         }
+        case TodoActions.UPDATE_TODO: {
+            return {
+                ...state,
+                loading: true,
+                loaded: false
+            };
+        }
+        case TodoActions.UPDATE_TODO_FAIL: {
+            return state;
+        }
 
+        case TodoActions.UPDATE_TODO_SUCCESS: {
+            let todo = state.todos.map(todo => {
+                if (todo.id == action.payload.payload.id) {
+                    todo.status = action.payload.payload.status;
+                    return action.payload;
+                } else {
+                    return todo;
+                }
 
+            });
+            return {
+                ...state,
+                todo,
+                loaded: true,
+                loading: false
+            };
+        }
     }
 }

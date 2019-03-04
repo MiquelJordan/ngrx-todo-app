@@ -11,6 +11,10 @@ import { TodoListItemComponent } from './components/todo/todo-list-item/todo-lis
 import * as TodoReducer from './store/todo/todo.reducer'
 import { StoreModule } from '@ngrx/store';
 import { MaterialModule } from './modules/material.module';
+import { TodoEffects } from './store/todo/todo.effects';
+import { EffectsModule } from '@ngrx/effects';
+import { MockService } from './services/mock/mock.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -24,10 +28,12 @@ import { MaterialModule } from './modules/material.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     StoreModule.forRoot({ todos: TodoReducer.TodoReducer }),
-    MaterialModule
+    EffectsModule.forRoot([TodoEffects]),
+    MaterialModule,
+    FlexLayoutModule
 
   ],
-  providers: [],
+  providers: [MockService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

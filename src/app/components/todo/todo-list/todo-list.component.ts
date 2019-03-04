@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import * as TodoAction from '../../../store/todo/todo.action';
+import { TouchSequence } from 'selenium-webdriver';
 
 
 
@@ -16,19 +17,24 @@ export class TodoListComponent implements OnInit {
 
   constructor(
     private store: Store<TodoListState>
-  ) {
-  }
-
-
+  ) { }
   todoListState$: Observable<TodoState[]>;
-
-
 
   ngOnInit() {
 
     this.todoListState$ = this.store.select(state => state.todos);
-
     this.store.dispatch(new TodoAction.GetTodos());
-    console.log("---------->", this.todoListState$)
+
+  }
+  onSelected(todoId, todoStatus) {
+    console.log("oncheck", todoId, todoStatus)
+    if (todoStatus == false) {
+      todoStatus = true
+    }
+    else if (todoStatus == true) {
+      todoStatus = false
+    }
+    this.store.dispatch(new TodoAction.UpdateTodo({ status: todoStatus, id: todoId }));
+
   }
 }
