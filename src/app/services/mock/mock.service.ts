@@ -15,7 +15,8 @@ export class MockService {
       title: "Do the todo-app 2",
       status: false,
       loading: false,
-      error: false
+      error: false,
+      description: "Do the fantastic Todo exercise"
     },
     {
       id: 2,

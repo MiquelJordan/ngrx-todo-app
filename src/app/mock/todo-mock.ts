@@ -7,7 +7,9 @@ export const mockTodo: TodoState[] = [
         title: "Do the todo-app",
         status: false,
         loading: false,
-        error: false
+        error: false,
+        description: "Do the fantastic Todo exercise"
+
     },
     {
         id: 6,
@@ -21,7 +23,8 @@ export const mockTodo: TodoState[] = [
         title: "Learn hox to do unit test",
         status: false,
         loading: false,
-        error: false
+        error: false,
+        description: "It's time to make some test"
     },
     {
         id: 8,

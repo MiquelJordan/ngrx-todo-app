@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoListComponent } from './components/todo/todo-list/todo-list.component';
-import { TodoListItemComponent } from './components/todo/todo-list-item/todo-list-item.component';
 
 
 import * as TodoReducer from './store/todo/todo.reducer'
@@ -15,13 +14,15 @@ import { TodoEffects } from './store/todo/todo.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { MockService } from './services/mock/mock.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TodoDetailComponent } from './components/todo/todo-detail/todo-detail.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
-    TodoListItemComponent
+    TodoDetailComponent,
+
   ],
   imports: [
     BrowserModule,
