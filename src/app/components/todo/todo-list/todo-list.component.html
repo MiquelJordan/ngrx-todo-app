@@ -1,4 +1,5 @@
 <h1>Todo App</h1>
+<button mat-raised-button (click)="onNewTodo()">Create new Todo</button>
 <div *ngIf="todoListState$ | async as todoListState">
 
   <mat-list fxLayout="column" fxLayoutAlign="center stretch" style="background-color: darkkhaki">

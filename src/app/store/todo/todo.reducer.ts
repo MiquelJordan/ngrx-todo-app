@@ -71,6 +71,16 @@ export function TodoReducer(state = defaultState, action: Action) {
             };
         }
 
+        case TodoActions.CREATE_TODO:
+
+            return {
+                ...state,
+                todos: [
+                    ...state.todos,
+                    action.payload
+                ]
+            };
+
 
     }
 }

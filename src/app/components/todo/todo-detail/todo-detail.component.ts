@@ -29,12 +29,12 @@ export class TodoDetailComponent implements OnInit {
       data["todos"].map((todo) => {
 
         if (todo["id"] == params) {
-          console.log("todo ", todo)
+
           this.selectedTodo = todo
         }
       })
 
-      console.log("todo ", this.selectedTodo)
+
     })
 
 

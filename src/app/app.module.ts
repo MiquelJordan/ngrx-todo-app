@@ -15,6 +15,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { MockService } from './services/mock/mock.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TodoDetailComponent } from './components/todo/todo-detail/todo-detail.component';
+import { TodoEditionComponent } from './components/todo/todo-edition/todo-edition.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,11 +24,13 @@ import { TodoDetailComponent } from './components/todo/todo-detail/todo-detail.c
     AppComponent,
     TodoListComponent,
     TodoDetailComponent,
-
+    TodoEditionComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     StoreModule.forRoot({ todos: TodoReducer.TodoReducer }),
     EffectsModule.forRoot([TodoEffects]),
@@ -35,6 +39,7 @@ import { TodoDetailComponent } from './components/todo/todo-detail/todo-detail.c
 
   ],
   providers: [MockService],
+  entryComponents: [TodoEditionComponent, TodoDetailComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
