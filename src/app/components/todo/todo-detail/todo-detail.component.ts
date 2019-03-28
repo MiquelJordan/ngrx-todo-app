@@ -17,28 +17,22 @@ export class TodoDetailComponent implements OnInit {
   constructor(
     private store: Store<TodoListState>,
     private router: ActivatedRoute
-  ) { 
+  ) {
     this.params = this.router.snapshot.params.id
   }
   todoListState$: Observable<TodoState[]>;
   selectedTodo
-  ngOnInit() {
 
+  ngOnInit() {
+    this.findSelectedTodo()
+  }
+
+  findSelectedTodo() {
     this.todoListState$ = this.store.select(state => state.todos);
     this.store.dispatch(new TodoAction.GetTodos());
     console.log(this.params)
     this.todoListState$.forEach((data) => {
-      data["todos"].map((todo) => {
-
-        if (todo["id"] == this.params) {
-          this.selectedTodo = todo
-        }
-      })
-
-
+      this.selectedTodo = data["todos"].find(todo => todo.id == this.params)
     })
-
-
-
   }
 }
