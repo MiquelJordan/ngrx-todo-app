@@ -9,6 +9,10 @@ export const UPDATE_TODO_FAIL = "[Todo] UPDATE_TODO_FAIL";
 
 export const CREATE_TODO = "[todoList] CREATE_TODO";
 export const CREATE_TODO_SUCCESS = "[todoList] CREATE_TODO_SUCCESS";
+
+export const DELETE_TODO = "[todoList] DELETE_TODO";
+export const DELETE_TODO_SUCCESS = "[todoList] DELETE_TODO_SUCCESS";
+
 export class GetTodos implements Action {
 	readonly type = GET_TODOS;
 	constructor() {}
@@ -41,6 +45,14 @@ export class CreateTodoSuccess implements Action {
 	readonly type = CREATE_TODO_SUCCESS;
 }
 
+export class DeleteTodo {
+	readonly type = DELETE_TODO;
+	constructor(public payload: Todo) {}
+}
+export class DeleteTodoSuccess implements Action {
+	readonly type = DELETE_TODO_SUCCESS;
+}
+
 export type All =
 	| GetTodos
 	| GetTodosSuccess
@@ -48,4 +60,6 @@ export type All =
 	| UpdateTodoFail
 	| UpdateTodoSuccess
 	| CreateTodo
-	| CreateTodoSuccess;
+	| CreateTodoSuccess
+	| DeleteTodo
+	| DeleteTodoSuccess;

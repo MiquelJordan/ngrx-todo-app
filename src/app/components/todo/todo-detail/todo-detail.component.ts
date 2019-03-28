@@ -3,7 +3,7 @@ import { Store } from "@ngrx/store";
 import { TodoListState, TodoState } from "src/app/store/todo/todo.state";
 import { Observable } from "rxjs";
 import * as TodoAction from "../../../store/todo/todo.action";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import Todo from "src/app/models/todo.model";
 import { tap } from "rxjs/operators";
 
@@ -19,7 +19,8 @@ export class TodoDetailComponent implements OnInit {
 
 	constructor(
 		private store: Store<TodoListState>,
-		private router: ActivatedRoute
+		private router: ActivatedRoute,
+		private route: Router
 	) {
 		this.selectedTodoId = this.router.snapshot.params.id;
 	}
@@ -36,14 +37,9 @@ export class TodoDetailComponent implements OnInit {
 				const todos = state.todos.todos;
 				this.selectedTodo = todos.find(todo => todo.id === this.selectedTodoId);
 			});
-
-		console.log(this.selectedTodoId);
-
-		console.log(this.todoListState);
-
-		// this.todoListState$.subscribe(data => {
-		// 	let todoState = data.todos;
-		// 	console.log(todoState);
-		// });
+	}
+	onDeleteTodo() {
+		this.store.dispatch(new TodoAction.DeleteTodo(this.selectedTodo));
+		this.route.navigateByUrl("../list");
 	}
 }

@@ -67,5 +67,14 @@ export function TodoReducer(state: TodoState = defaultState, action: Action) {
 			return {
 				...state
 			};
+		case TodoActions.DELETE_TODO:
+			return {
+				...state,
+				todos: [...state.todos, action.payload]
+			};
+		case TodoActions.DELETE_TODO_SUCCESS:
+			return {
+				...state
+			};
 	}
 }
