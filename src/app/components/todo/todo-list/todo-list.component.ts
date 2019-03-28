@@ -6,6 +6,7 @@ import * as TodoAction from "../../../store/todo/todo.action";
 import { TouchSequence } from "selenium-webdriver";
 import { ModalService } from "src/app/services/modal/modal.service";
 import { tap } from "rxjs/operators";
+import Todo from "src/app/models/todo.model";
 
 @Component({
 	selector: "app-todo-list",
@@ -17,7 +18,7 @@ export class TodoListComponent implements OnInit {
 		private store: Store<TodoListState>,
 		private modalSrv: ModalService
 	) {}
-	todoListState$: Observable<TodoState[]>;
+	todoListState$: Observable<TodoState>;
 
 	ngOnInit() {
 		this.todoListState$ = this.store
@@ -25,7 +26,7 @@ export class TodoListComponent implements OnInit {
 			.pipe(
 				tap(result => {
 					console.log("result", result),
-						result["todos"].sort((a, b) => {
+						result.todos.sort((a, b) => {
 							if (a.creationDate > b.creationDate) {
 								return -1;
 							}

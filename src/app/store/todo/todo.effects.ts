@@ -1,4 +1,3 @@
-import { TodoState } from "./todo.state";
 import { environment } from "../../../environments/environment";
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
@@ -39,9 +38,10 @@ export class TodoEffects {
 	CreateTodo$: Observable<Action> = this.actions$.pipe(
 		ofType(TodoActions.CREATE_TODO),
 		// http request
-		tap(data => {
+		tap((data: any) => {
 			console.log("create tap data", data);
-			this.mockSRV.addMockTodo(data["payload"]);
+
+			this.mockSRV.addMockTodo(data.payload);
 		}),
 		map(data => {
 			console.log("----------->create effect", data);

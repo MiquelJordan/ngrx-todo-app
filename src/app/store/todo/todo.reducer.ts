@@ -5,14 +5,13 @@ import { mockTodo } from "src/app/mock/todo-mock";
 
 export type Action = TodoActions.All;
 
-const defaultTodoStates: TodoState[] = [...mockTodo];
+const defaultTodoStates: Todo[] = [...mockTodo];
 
-const defaultState: TodoListState = {
-	todos: [...mockTodo],
-	loading: false
+const defaultState: TodoState = {
+	todos: [...mockTodo]
 };
 
-export function TodoReducer(state = defaultState, action: Action) {
+export function TodoReducer(state: TodoState = defaultState, action: Action) {
 	console.log("todo reducer", state, action);
 
 	switch (action.type) {

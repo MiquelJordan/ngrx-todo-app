@@ -1,8 +1,7 @@
 import Todo from "src/app/models/todo.model";
 
-export interface TodoState extends Todo {
-	loading: boolean;
-	error: boolean;
+export interface TodoState {
+	todos: Todo[];
 }
 
 export const initializeTodoState = () => {
@@ -13,7 +12,7 @@ export const initializeTodoState = () => {
 };
 
 export interface TodoListState {
-	todos: TodoState[];
+	todos: TodoState;
 	loading: boolean;
 }
 

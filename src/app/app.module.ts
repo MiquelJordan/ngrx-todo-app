@@ -35,6 +35,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 		MaterialModule,
 		FlexLayoutModule
 	],
+	exports: [MaterialModule],
 	providers: [MockService],
 	entryComponents: [TodoEditionComponent, TodoDetailComponent],
 	bootstrap: [AppComponent]

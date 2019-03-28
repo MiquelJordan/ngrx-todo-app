@@ -3,7 +3,7 @@ import { MatDialogRef } from "@angular/material";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import * as uuidv4 from "uuid/v4";
 import { Store } from "@ngrx/store";
-import { TodoListState, TodoState } from "src/app/store/todo/todo.state";
+import { TodoListState } from "src/app/store/todo/todo.state";
 import * as TodoAction from "../../../store/todo/todo.action";
 import { MockService } from "src/app/services/mock/mock.service";
 
