@@ -5,7 +5,7 @@
   <mat-list fxLayout="column" fxLayoutAlign="center stretch" class="bg-darkKhaki">
 
     <ng-container *ngFor="let todo of todoListState.todos">
-      <mat-list class="p-20" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.isDone == false">
+      <mat-list class="p-20" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.isDone === false">
         <h3>
           {{todo.title}}
         </h3>
@@ -14,11 +14,11 @@
           <mat-checkbox (click)="onSelected(todo.id,todo.isDone)" [(checked)]="todo.isDone"></mat-checkbox>
         </div>
       </mat-list>
-      <mat-divider *ngIf="todo.isDone == false"></mat-divider>
+      <mat-divider *ngIf="todo.isDone === false"></mat-divider>
     </ng-container>
 
     <ng-container *ngFor="let todo of todoListState.todos">
-      <mat-list class="p-20" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.isDone == true">
+      <mat-list class="p-20" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.isDone === true">
         <h3 class="line-through">
           {{todo.title}}
         </h3>
@@ -27,7 +27,7 @@
           <mat-checkbox (click)="onSelected(todo.id,todo.isDone)" [(checked)]="todo.isDone"></mat-checkbox>
         </div>
       </mat-list>
-      <mat-divider *ngIf="todo.isDone == true"></mat-divider>
+      <mat-divider *ngIf="todo.isDone === true"></mat-divider>
     </ng-container>
 
   </mat-list>

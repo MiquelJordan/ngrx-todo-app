@@ -1,27 +1,25 @@
-import Todo from 'src/app/models/todo.model';
-
+import Todo from "src/app/models/todo.model";
 
 export interface TodoState extends Todo {
-    loading: boolean;
-    error: boolean;
+	loading: boolean;
+	error: boolean;
 }
 
-export const initializeTodoState = function () {
-    return {
-        loading: false,
-        error: false,
-    }
-}
+export const initializeTodoState = () => {
+	return {
+		loading: false,
+		error: false
+	};
+};
 
 export interface TodoListState {
-    todos: TodoState[];
-    loading: boolean;
-
+	todos: TodoState[];
+	loading: boolean;
 }
 
-export const intializeTodoListState = function () {
-    return {
-        loading: false,
-        pending: 0,
-    }
-}
+export const intializeTodoListState = () => {
+	return {
+		loading: false,
+		pending: 0
+	};
+};

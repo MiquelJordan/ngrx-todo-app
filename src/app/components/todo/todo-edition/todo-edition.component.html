@@ -16,8 +16,8 @@
 
     Cancel
   </button>
-  <button mat-stroked-button type="submit" (click)="confirm()" type="button" color="primary">
+  <button [disabled]="!todoForm.valid" mat-stroked-button type="submit" (click)="confirm()" type="button" color="primary">
 
     Envoyer
-  </button>
+  </button>  
 </mat-dialog-actions>
