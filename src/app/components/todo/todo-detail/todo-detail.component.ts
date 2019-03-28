@@ -12,16 +12,17 @@ import Todo from 'src/app/models/todo.model';
   styleUrls: ['./todo-detail.component.css']
 })
 export class TodoDetailComponent implements OnInit {
-  params: any;
+  selectedTodoId: any;
+  todoListState$: Observable<TodoState[]>;
+  selectedTodo: Todo
 
   constructor(
     private store: Store<TodoListState>,
     private router: ActivatedRoute
   ) {
-    this.params = this.router.snapshot.params.id
+    this.selectedTodoId = this.router.snapshot.params.id
   }
-  todoListState$: Observable<TodoState[]>;
-  selectedTodo
+
 
   ngOnInit() {
     this.findSelectedTodo()
@@ -30,9 +31,9 @@ export class TodoDetailComponent implements OnInit {
   findSelectedTodo() {
     this.todoListState$ = this.store.select(state => state.todos);
     this.store.dispatch(new TodoAction.GetTodos());
-    console.log(this.params)
+    console.log(this.selectedTodoId)
     this.todoListState$.forEach((data) => {
-      this.selectedTodo = data["todos"].find(todo => todo.id == this.params)
+      this.selectedTodo = data["todos"].find(todo => todo.id == this.selectedTodoId)
     })
   }
 }

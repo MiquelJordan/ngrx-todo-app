@@ -2,10 +2,10 @@
 <button mat-raised-button (click)="onNewTodo()">Create new Todo</button>
 <div *ngIf="todoListState$ | async as todoListState">
 
-  <mat-list fxLayout="column" fxLayoutAlign="center stretch" style="background-color: darkkhaki">
+  <mat-list fxLayout="column" fxLayoutAlign="center stretch" class="bg-darkKhaki">
 
     <ng-container *ngFor="let todo of todoListState.todos">
-      <mat-list style="padding: 20px" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.isDone == false">
+      <mat-list class="p-20" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.isDone == false">
         <h3>
           {{todo.title}}
         </h3>
@@ -18,8 +18,8 @@
     </ng-container>
 
     <ng-container *ngFor="let todo of todoListState.todos">
-      <mat-list style="padding: 20px" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.isDone == true">
-        <h3 style="text-decoration-line: line-through">
+      <mat-list class="p-20" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.isDone == true">
+        <h3 class="line-through">
           {{todo.title}}
         </h3>
         <div>

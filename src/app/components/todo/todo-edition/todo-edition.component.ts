@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import Todo from 'src/app/models/todo.model';
 import *  as uuidv4 from 'uuid/v4';
 import { Store } from '@ngrx/store';
 import { TodoListState, TodoState } from 'src/app/store/todo/todo.state';
