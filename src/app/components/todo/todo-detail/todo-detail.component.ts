@@ -12,24 +12,25 @@ import Todo from 'src/app/models/todo.model';
   styleUrls: ['./todo-detail.component.css']
 })
 export class TodoDetailComponent implements OnInit {
+  params: any;
 
   constructor(
     private store: Store<TodoListState>,
     private router: ActivatedRoute
-  ) { }
+  ) { 
+    this.params = this.router.snapshot.params.id
+  }
   todoListState$: Observable<TodoState[]>;
   selectedTodo
   ngOnInit() {
 
     this.todoListState$ = this.store.select(state => state.todos);
     this.store.dispatch(new TodoAction.GetTodos());
-    let params = this.router.snapshot.params.id
-    console.log(params)
-    let todos = this.todoListState$.forEach((data) => {
+    console.log(this.params)
+    this.todoListState$.forEach((data) => {
       data["todos"].map((todo) => {
 
-        if (todo["id"] == params) {
-
+        if (todo["id"] == this.params) {
           this.selectedTodo = todo
         }
       })

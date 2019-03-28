@@ -6,7 +6,7 @@ export const mockTodo: TodoState[] = [
     {
         id: uuidv4(),
         title: "Do the todo-app",
-        status: false,
+        isDone: false,
         loading: false,
         error: false,
         description: "Do the fantastic Todo exercise",
@@ -16,7 +16,7 @@ export const mockTodo: TodoState[] = [
     {
         id: uuidv4(),
         title: "Learn Ngrx",
-        status: false,
+        isDone: false,
         loading: false,
         error: false,
         creationDate: new Date
@@ -24,7 +24,7 @@ export const mockTodo: TodoState[] = [
     {
         id: uuidv4(),
         title: "Learn hox to do unit test",
-        status: false,
+        isDone: false,
         loading: false,
         error: false,
         description: "It's time to make some test",
@@ -33,7 +33,7 @@ export const mockTodo: TodoState[] = [
     {
         id: uuidv4(),
         title: "Learn about devops",
-        status: true,
+        isDone: true,
         loading: false,
         error: false,
         creationDate: new Date

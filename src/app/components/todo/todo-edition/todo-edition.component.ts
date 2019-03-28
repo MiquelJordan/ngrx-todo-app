@@ -31,26 +31,16 @@ export class TodoEditionComponent implements OnInit {
     this.todoForm = this.fb.group({
       title: '',
       description: '',
-      statud: '',
-      id: '',
-      date: ''
-    });
-  }
-  confirm() {
-    console.log("submit")
-    const formValue = this.todoForm.value;
-    const newTodo: TodoState =
-    {
-      title: formValue['title'],
-      description: formValue['description'],
       id: uuidv4(),
-      status: false,
+      isDone: false,
       creationDate: new Date,
       error: false,
       loading: false
-    }
-    this.mockSRV.mockTodo.push(newTodo)
-    this.store.dispatch(new TodoAction.CreateTodo(newTodo))
+    });
+  }
+  confirm() {
+    console.log("submit this.todoForm.value", this.todoForm.value)
+    this.store.dispatch(new TodoAction.CreateTodo(this.todoForm.value))
     this.dialogRef.close(true);
   }
   cancel() {

@@ -4,9 +4,9 @@ import { TodoListComponent } from './components/todo/todo-list/todo-list.compone
 import { TodoDetailComponent } from './components/todo/todo-detail/todo-detail.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/list', pathMatch: 'full' },
   { path: 'list', component: TodoListComponent },
   { path: 'todo/:id', component: TodoDetailComponent },
+  { path: '**', redirectTo: '/list', pathMatch: 'full' },
 ];
 
 @NgModule({

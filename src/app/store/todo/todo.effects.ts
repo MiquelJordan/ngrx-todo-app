@@ -43,6 +43,22 @@ export class TodoEffects {
         })
 
     );
+    @Effect()
+    CreateTodo$: Observable<Action> = this.actions$.pipe(
+        ofType(TodoActions.CREATE_TODO),
+        //http request
+        tap((data) => {
+            console.log("create tap data", data)
+            this.mockSRV.addMockTodo(data['payload'])
+        }
+        ),
+        map((data) => {
+            console.log("----------->create effect", data)
+
+            return new TodoActions.CreateTodoSuccess()
+        })
+
+    );
 
 
 

@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Todo creation</h1>
 <mat-dialog-content>
-  <div class="col-sm-8 col-sm-offset-2">
+  <div>
     <form [formGroup]="todoForm" (ngSubmit)="confirm()">
       <mat-form-field class="input-full-width">
         <input formControlName="title" matInput placeholder="Title">
@@ -12,11 +12,11 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button class="f-r" (click)="cancel()" type="button" color="warn">
+  <button mat-button (click)="cancel()" type="button" color="warn">
 
     Cancel
   </button>
-  <button class="f-l" mat-stroked-button type="submit" (click)="confirm()" type="button" color="primary">
+  <button mat-stroked-button type="submit" (click)="confirm()" type="button" color="primary">
 
     Envoyer
   </button>

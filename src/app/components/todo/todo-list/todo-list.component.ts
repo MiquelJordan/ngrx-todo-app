@@ -43,15 +43,15 @@ export class TodoListComponent implements OnInit {
     this.store.dispatch(new TodoAction.GetTodos());
 
   }
-  onSelected(todoId, todoStatus) {
-    console.log("oncheck", todoId, todoStatus)
-    if (todoStatus == false) {
-      todoStatus = true
+  onSelected(todoId, todoisDone) {
+    console.log("oncheck", todoId, todoisDone)
+    if (todoisDone == false) {
+      todoisDone = true
     }
-    else if (todoStatus == true) {
-      todoStatus = false
+    else if (todoisDone == true) {
+      todoisDone = false
     }
-    this.store.dispatch(new TodoAction.UpdateTodo({ status: todoStatus, id: todoId }));
+    this.store.dispatch(new TodoAction.UpdateTodo({ isDone: todoisDone, id: todoId }));
 
   }
   onNewTodo() {

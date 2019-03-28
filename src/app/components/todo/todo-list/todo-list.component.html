@@ -5,29 +5,29 @@
   <mat-list fxLayout="column" fxLayoutAlign="center stretch" style="background-color: darkkhaki">
 
     <ng-container *ngFor="let todo of todoListState.todos">
-      <mat-list style="padding: 20px" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.status == false">
+      <mat-list style="padding: 20px" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.isDone == false">
         <h3>
           {{todo.title}}
         </h3>
         <div>
           <button [routerLink]="[ '/todo', todo.id ]" mat-button> Détail</button>
-          <mat-checkbox (click)="onSelected(todo.id,todo.status)" [(checked)]="todo.status"></mat-checkbox>
+          <mat-checkbox (click)="onSelected(todo.id,todo.isDone)" [(checked)]="todo.isDone"></mat-checkbox>
         </div>
       </mat-list>
-      <mat-divider *ngIf="todo.status == false"></mat-divider>
+      <mat-divider *ngIf="todo.isDone == false"></mat-divider>
     </ng-container>
 
     <ng-container *ngFor="let todo of todoListState.todos">
-      <mat-list style="padding: 20px" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.status == true">
+      <mat-list style="padding: 20px" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.isDone == true">
         <h3 style="text-decoration-line: line-through">
           {{todo.title}}
         </h3>
         <div>
           <button [routerLink]="[ '/todo', todo.id ]" mat-button> Détail</button>
-          <mat-checkbox (click)="onSelected(todo.id,todo.status)" [(checked)]="todo.status"></mat-checkbox>
+          <mat-checkbox (click)="onSelected(todo.id,todo.isDone)" [(checked)]="todo.isDone"></mat-checkbox>
         </div>
       </mat-list>
-      <mat-divider *ngIf="todo.status == true"></mat-divider>
+      <mat-divider *ngIf="todo.isDone == true"></mat-divider>
     </ng-container>
 
   </mat-list>

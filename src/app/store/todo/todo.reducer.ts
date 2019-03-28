@@ -56,7 +56,7 @@ export function TodoReducer(state = defaultState, action: Action) {
         case TodoActions.UPDATE_TODO_SUCCESS: {
             let todo = state.todos.map(todo => {
                 if (todo.id == action.payload.payload.id) {
-                    todo.status = action.payload.payload.status;
+                    todo.isDone = action.payload.payload.isDone;
                     return action.payload;
                 } else {
                     return todo;
@@ -79,6 +79,10 @@ export function TodoReducer(state = defaultState, action: Action) {
                     ...state.todos,
                     action.payload
                 ]
+            };
+        case TodoActions.CREATE_TODO_SUCCESS:
+            return {
+                ...state,
             };
 
 

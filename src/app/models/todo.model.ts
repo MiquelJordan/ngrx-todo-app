@@ -1,14 +1,14 @@
 export default class Todo {
     id: any
     title: string;
-    status: boolean;
+    isDone: boolean;
     description?: string;
     creationDate: Date
     constructor(
     ) {
         this.id;
         this.title = "";
-        this.status = false;
+        this.isDone = false;
         this.description = "";
         this.creationDate
 
