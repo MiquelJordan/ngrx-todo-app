@@ -7,7 +7,7 @@ import { AppRoutingModule } from "src/app/app-routing.module";
 import { TodoListComponent } from "../todo-list/todo-list.component";
 import { StoreModule, Store, StateObservable } from "@ngrx/store";
 import { TodoReducer } from "src/app/store/todo/todo.reducer";
-import { TodoListState } from "src/app/store/todo/todo.state";
+import { AppState } from "src/app/store/todo/todo.state";
 describe("TodoDetailComponent", () => {
 	let component: TodoDetailComponent;
 	let fixture: ComponentFixture<TodoDetailComponent>;

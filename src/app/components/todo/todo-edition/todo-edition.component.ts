@@ -3,7 +3,7 @@ import { MatDialogRef } from "@angular/material";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import * as uuidv4 from "uuid/v4";
 import { Store } from "@ngrx/store";
-import { TodoListState } from "src/app/store/todo/todo.state";
+import { AppState } from "src/app/store/todo/todo.state";
 import * as TodoAction from "../../../store/todo/todo.action";
 import { MockService } from "src/app/services/mock/mock.service";
 
@@ -17,8 +17,7 @@ export class TodoEditionComponent implements OnInit {
 	constructor(
 		public dialogRef: MatDialogRef<TodoEditionComponent>,
 		private fb: FormBuilder,
-		private store: Store<TodoListState>,
-		private mockSRV: MockService
+		private store: Store<AppState>
 	) {}
 
 	ngOnInit() {
@@ -37,7 +36,6 @@ export class TodoEditionComponent implements OnInit {
 		});
 	}
 	confirm() {
-		console.log("submit this.todoForm.value", this.todoForm.value);
 		this.store.dispatch(new TodoAction.CreateTodo(this.todoForm.value));
 		this.dialogRef.close(true);
 	}

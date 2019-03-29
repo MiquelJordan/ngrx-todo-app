@@ -1,13 +1,9 @@
-import { environment } from "../../../environments/environment";
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Observable } from "rxjs";
 import { Action } from "@ngrx/store";
-import { map, tap, switchMap } from "rxjs/operators";
-
+import { map, tap, switchMap, concatMap } from "rxjs/operators";
 import * as TodoActions from "./todo.action";
-
-import { HttpClient } from "@angular/common/http";
 import { MockService } from "src/app/services/mock/mock.service";
 
 @Injectable()
@@ -16,7 +12,7 @@ export class TodoEffects {
 	@Effect()
 	GetTodos$: Observable<Action> = this.actions$.pipe(
 		ofType(TodoActions.GET_TODOS),
-		switchMap(action => {
+		concatMap(action => {
 			console.log("switch map ", action);
 			return this.mockSRV.getMockTodos();
 		}),
@@ -52,12 +48,12 @@ export class TodoEffects {
 		ofType(TodoActions.DELETE_TODO),
 		// http request
 		tap((data: any) => {
-			console.log("create tap data", data);
+			console.log("deleta tap data", data);
 
 			this.mockSRV.deleteMockTodo(data.payload);
 		}),
 		map(data => {
-			console.log("----------->create effect", data);
+			console.log("----------->delete effect", data);
 
 			return new TodoActions.DeleteTodoSuccess();
 		})

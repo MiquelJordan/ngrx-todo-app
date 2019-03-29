@@ -30,7 +30,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 		FormsModule,
 		ReactiveFormsModule,
 		AppRoutingModule,
-		StoreModule.forRoot({ todos: TodoReducer.TodoReducer }),
+		StoreModule.forRoot({ todoState: TodoReducer.TodoReducer }),
 		EffectsModule.forRoot([TodoEffects]),
 		MaterialModule,
 		FlexLayoutModule

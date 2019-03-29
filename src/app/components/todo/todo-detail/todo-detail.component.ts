@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { TodoListState, TodoState } from "src/app/store/todo/todo.state";
+import { AppState, TodoState } from "src/app/store/todo/todo.state";
 import { Observable } from "rxjs";
 import * as TodoAction from "../../../store/todo/todo.action";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -14,11 +14,11 @@ import { tap } from "rxjs/operators";
 })
 export class TodoDetailComponent implements OnInit {
 	selectedTodoId: string;
-	todoListState: Todo[];
+	AppState: Todo[];
 	selectedTodo: Todo;
 
 	constructor(
-		private store: Store<TodoListState>,
+		private store: Store<AppState>,
 		private router: ActivatedRoute,
 		private route: Router
 	) {
@@ -34,7 +34,7 @@ export class TodoDetailComponent implements OnInit {
 		this.store
 			.select(state => state)
 			.subscribe(state => {
-				const todos = state.todos.todos;
+				const todos = state.todoState.todos;
 				this.selectedTodo = todos.find(todo => todo.id === this.selectedTodoId);
 			});
 	}

@@ -45,7 +45,7 @@ export class MockService {
 		this.mockTodo.push(todo);
 	}
 	deleteMockTodo(todo) {
-		let todoIndex = this.mockTodo.findIndex(td => td.id === todo.id);
+		const todoIndex = this.mockTodo.findIndex(td => td.id === todo.id);
 		this.mockTodo.splice(todoIndex, 1);
 	}
 }

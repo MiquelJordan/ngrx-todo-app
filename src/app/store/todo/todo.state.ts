@@ -11,12 +11,12 @@ export const initializeTodoState = () => {
 	};
 };
 
-export interface TodoListState {
-	todos: TodoState;
+export interface AppState {
+	todoState: TodoState;
 	loading: boolean;
 }
 
-export const intializeTodoListState = () => {
+export const intializeAppState = () => {
 	return {
 		loading: false,
 		pending: 0
