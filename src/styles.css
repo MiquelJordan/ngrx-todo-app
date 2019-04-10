@@ -2,6 +2,5 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .main-bg{
-    background-image: url("./assets/mur-post-it.jpg");
-    background-size: auto 
+   background-color:dimgray
 }

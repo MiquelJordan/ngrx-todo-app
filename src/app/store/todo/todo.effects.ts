@@ -34,24 +34,15 @@ export class TodoEffects {
 	CreateTodo$: Observable<Action> = this.actions$.pipe(
 		ofType(TodoActions.CREATE_TODO),
 		// http request
-		tap((data: any) => {
-			console.log("create tap data", data);
-			this.mockSRV.addMockTodo(data.payload);
-		}),
 		map(data => {
 			console.log("----------->create effect", data);
-			return new TodoActions.CreateTodoSuccess();
+			return new TodoActions.CreateTodoSuccess(data);
 		})
 	);
 	@Effect()
 	DeleteTodo$: Observable<Action> = this.actions$.pipe(
 		ofType(TodoActions.DELETE_TODO),
 		// http request
-		tap((data: any) => {
-			console.log("deleta tap data", data);
-
-			this.mockSRV.deleteMockTodo(data.payload);
-		}),
 		map(data => {
 			console.log("----------->delete effect", data);
 

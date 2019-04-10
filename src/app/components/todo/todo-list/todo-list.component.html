@@ -1,8 +1,10 @@
-<h1>Todo App</h1>
-<button mat-raised-button (click)="onNewTodo()">Create new Todo</button>
-<div *ngIf="todoListState$ | async as todoListState">
+<h1 class="m-20">Todo App</h1>
 
-  <mat-list fxLayout="column" fxLayoutAlign="center stretch" class="bg-darkKhaki">
+<button class="m-20" mat-raised-button (click)="onNewTodo()">Create new Todo</button>
+
+<mat-card class="bg-goldenrod" *ngIf="todoListState$ | async as todoListState">
+
+  <mat-list fxLayout="column" fxLayoutAlign="center stretch" >
 
     <ng-container *ngFor="let todo of todoListState.todos">
       <mat-list class="p-20" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="todo.isDone === false">
@@ -14,7 +16,7 @@
           <mat-checkbox (click)="onSelected(todo.id,todo.isDone)" [(checked)]="todo.isDone"></mat-checkbox>
         </div>
       </mat-list>
-      <mat-divider *ngIf="todo.isDone === false"></mat-divider>
+     
     </ng-container>
 
     <ng-container *ngFor="let todo of todoListState.todos">
@@ -24,14 +26,14 @@
         </h3>
         <div>
           <button [routerLink]="[ '/todo', todo.id ]" mat-button> Détail</button>
-          <mat-checkbox (click)="onSelected(todo.id,todo.isDone)" [(checked)]="todo.isDone"></mat-checkbox>
+          <mat-checkbox color="primary" (click)="onSelected(todo.id,todo.isDone)" [(checked)]="todo.isDone"></mat-checkbox>
         </div>
       </mat-list>
-      <mat-divider *ngIf="todo.isDone === true"></mat-divider>
+     
     </ng-container>
 
   </mat-list>
 
 
 
-</div>
+</mat-card>

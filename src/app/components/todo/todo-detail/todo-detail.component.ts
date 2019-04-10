@@ -13,7 +13,7 @@ import { tap } from "rxjs/operators";
 	styleUrls: ["./todo-detail.component.css"]
 })
 export class TodoDetailComponent implements OnInit {
-	selectedTodoId: string;
+	selectedTodoId: number;
 	AppState: Todo[];
 	selectedTodo: Todo;
 
@@ -21,11 +21,10 @@ export class TodoDetailComponent implements OnInit {
 		private store: Store<AppState>,
 		private router: ActivatedRoute,
 		private route: Router
-	) {
-		this.selectedTodoId = this.router.snapshot.params.id;
-	}
+	) {}
 
 	ngOnInit() {
+		this.selectedTodoId = this.router.snapshot.params.id;
 		this.findSelectedTodo();
 	}
 
@@ -35,7 +34,9 @@ export class TodoDetailComponent implements OnInit {
 			.select(state => state)
 			.subscribe(state => {
 				const todos = state.todoState.todos;
-				this.selectedTodo = todos.find(todo => todo.id === this.selectedTodoId);
+				console.log(todos);
+				this.selectedTodo = todos.find(todo => todo.id == this.selectedTodoId);
+				console.log(this.selectedTodo);
 			});
 	}
 	onDeleteTodo() {

@@ -26,7 +26,7 @@ export function TodoReducer(state: TodoState = defaultState, action: Action) {
 		case TodoActions.GET_TODOS_SUCCESS: {
 			return {
 				...state,
-				todos: [...action.payload, ...defaultTodoStates],
+				todos: [...action.payload, ...state.todos],
 				loading: false
 			};
 		}
@@ -69,9 +69,18 @@ export function TodoReducer(state: TodoState = defaultState, action: Action) {
 				...state
 			};
 		case TodoActions.DELETE_TODO:
+			let todoUpdate: Todo[] = [];
+			state.todos.map(todo => {
+				if (todo.id == action.payload.id) {
+					console.log("Delete");
+				} else {
+					console.log(todo);
+					todoUpdate.push(todo);
+				}
+			});
 			return {
 				...state,
-				todos: [...state.todos, action.payload]
+				todos: [...todoUpdate]
 			};
 		case TodoActions.DELETE_TODO_SUCCESS:
 			return {

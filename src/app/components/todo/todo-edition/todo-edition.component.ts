@@ -6,6 +6,7 @@ import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store/todo/todo.state";
 import * as TodoAction from "../../../store/todo/todo.action";
 import { MockService } from "src/app/services/mock/mock.service";
+import { tap } from "rxjs/operators";
 
 @Component({
 	selector: "app-todo-edition",
@@ -14,6 +15,7 @@ import { MockService } from "src/app/services/mock/mock.service";
 })
 export class TodoEditionComponent implements OnInit {
 	public todoForm: FormGroup;
+	private todosLength;
 	constructor(
 		public dialogRef: MatDialogRef<TodoEditionComponent>,
 		private fb: FormBuilder,
@@ -23,12 +25,21 @@ export class TodoEditionComponent implements OnInit {
 	ngOnInit() {
 		this.initForm();
 	}
+	getTodosLength() {
+		this.store
+			.select(state => state.todoState.todos.length)
+			.subscribe(state => {
+				this.todosLength = state;
+			});
+	}
 
 	initForm() {
+		this.getTodosLength();
+		console.log(this.todosLength);
 		this.todoForm = this.fb.group({
 			title: ["", Validators.required],
 			description: "",
-			id: uuidv4(),
+			id: this.todosLength,
 			isDone: false,
 			creationDate: new Date(),
 			error: false,

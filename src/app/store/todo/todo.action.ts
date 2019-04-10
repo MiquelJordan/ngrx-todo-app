@@ -43,6 +43,7 @@ export class CreateTodo {
 }
 export class CreateTodoSuccess implements Action {
 	readonly type = CREATE_TODO_SUCCESS;
+	constructor(public payload: Todo) {}
 }
 
 export class DeleteTodo {
