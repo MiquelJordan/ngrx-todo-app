@@ -45,14 +45,15 @@ export function TodoReducer(state: TodoState = defaultState, action: Action) {
 			const todoUpdate = state.todos.map(todo => {
 				if (todo.id === action.payload.payload.id) {
 					todo.isDone = action.payload.payload.isDone;
-					return action.payload;
+					return todo;
 				} else {
 					return todo;
 				}
 			});
+			console.log(todoUpdate);
 			return {
 				...state,
-				todoUpdate,
+				todos: [...todoUpdate],
 				loaded: true,
 				loading: false
 			};
