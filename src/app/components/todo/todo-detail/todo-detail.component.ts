@@ -5,7 +5,9 @@ import { Observable } from "rxjs";
 import * as TodoAction from "../../../store/todo/todo.action";
 import { ActivatedRoute, Router } from "@angular/router";
 import Todo from "src/app/models/todo.model";
-import { tap } from "rxjs/operators";
+import { tap, map } from "rxjs/operators";
+import { MockDataService } from "src/app/services/mock/mock-data.service";
+import { TodoService } from "src/app/services/todo/todo.service";
 
 @Component({
 	selector: "app-todo-detail",
@@ -15,29 +17,27 @@ import { tap } from "rxjs/operators";
 export class TodoDetailComponent implements OnInit {
 	selectedTodoId: number;
 	AppState: Todo[];
-	selectedTodo: Todo;
+	selectedTodo;
 
 	constructor(
 		private store: Store<AppState>,
 		private router: ActivatedRoute,
-		private route: Router
+		private route: Router,
+		private todoSrv: TodoService
 	) {}
 
 	ngOnInit() {
 		this.selectedTodoId = this.router.snapshot.params.id;
-		this.findSelectedTodo();
+		if (this.selectedTodoId) {
+			this.findSelectedTodo();
+		}
 	}
 
 	findSelectedTodo() {
-		this.store.dispatch(new TodoAction.GetTodos());
-		this.store
-			.select(state => state)
-			.subscribe(state => {
-				const todos = state.todoState.todos;
-				console.log(todos);
-				this.selectedTodo = todos.find(todo => todo.id == this.selectedTodoId);
-				console.log(this.selectedTodo);
-			});
+		this.todoSrv.getTodo(this.selectedTodoId).subscribe(data => {
+			this.selectedTodo = data;
+			console.log(data);
+		});
 	}
 	onDeleteTodo() {
 		this.store.dispatch(new TodoAction.DeleteTodo(this.selectedTodo));

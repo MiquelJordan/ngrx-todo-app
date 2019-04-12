@@ -26,7 +26,7 @@ export function TodoReducer(state: TodoState = defaultState, action: Action) {
 		case TodoActions.GET_TODOS_SUCCESS: {
 			return {
 				...state,
-				todos: [...action.payload, ...state.todos],
+				todos: [...action.payload],
 				loading: false
 			};
 		}
@@ -43,14 +43,13 @@ export function TodoReducer(state: TodoState = defaultState, action: Action) {
 
 		case TodoActions.UPDATE_TODO_SUCCESS: {
 			const todoUpdate = state.todos.map(todo => {
-				if (todo.id === action.payload.payload.id) {
-					todo.isDone = action.payload.payload.isDone;
+				if (todo.id == action.payload.id) {
+					todo.isDone = action.payload.isDone;
 					return todo;
 				} else {
 					return todo;
 				}
 			});
-			console.log(todoUpdate);
 			return {
 				...state,
 				todos: [...todoUpdate],
@@ -61,30 +60,28 @@ export function TodoReducer(state: TodoState = defaultState, action: Action) {
 
 		case TodoActions.CREATE_TODO:
 			return {
-				...state,
-				todos: [...state.todos, action.payload]
+				...state
 			};
 		case TodoActions.CREATE_TODO_SUCCESS:
 			return {
-				...state
+				...state,
+				todos: [...state.todos, action.payload]
 			};
 		case TodoActions.DELETE_TODO:
+			return {
+				...state
+			};
+		case TodoActions.DELETE_TODO_SUCCESS:
 			let todoUpdate: Todo[] = [];
 			state.todos.map(todo => {
 				if (todo.id == action.payload.id) {
-					console.log("Delete");
 				} else {
-					console.log(todo);
 					todoUpdate.push(todo);
 				}
 			});
 			return {
 				...state,
 				todos: [...todoUpdate]
-			};
-		case TodoActions.DELETE_TODO_SUCCESS:
-			return {
-				...state
 			};
 	}
 }

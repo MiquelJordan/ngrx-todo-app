@@ -11,11 +11,13 @@ import { StoreModule } from "@ngrx/store";
 import { MaterialModule } from "./modules/material.module";
 import { TodoEffects } from "./store/todo/todo.effects";
 import { EffectsModule } from "@ngrx/effects";
-import { MockService } from "./services/mock/mock.service";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { TodoDetailComponent } from "./components/todo/todo-detail/todo-detail.component";
 import { TodoEditionComponent } from "./components/todo/todo-edition/todo-edition.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { InMemoryWebApiModule } from "angular-in-memory-web-api";
+import { MockDataService } from "./services/mock/mock-data.service";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
 	declarations: [
@@ -33,10 +35,12 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 		StoreModule.forRoot({ todoState: TodoReducer.TodoReducer }),
 		EffectsModule.forRoot([TodoEffects]),
 		MaterialModule,
-		FlexLayoutModule
+		FlexLayoutModule,
+		HttpClientModule,
+		InMemoryWebApiModule.forRoot(MockDataService)
 	],
 	exports: [MaterialModule],
-	providers: [MockService],
+
 	entryComponents: [TodoEditionComponent, TodoDetailComponent],
 	bootstrap: [AppComponent]
 })

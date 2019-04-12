@@ -1,12 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import * as uuidv4 from "uuid/v4";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store/todo/todo.state";
 import * as TodoAction from "../../../store/todo/todo.action";
-import { MockService } from "src/app/services/mock/mock.service";
-import { tap } from "rxjs/operators";
 
 @Component({
 	selector: "app-todo-edition",
@@ -35,7 +32,6 @@ export class TodoEditionComponent implements OnInit {
 
 	initForm() {
 		this.getTodosLength();
-		console.log(this.todosLength);
 		this.todoForm = this.fb.group({
 			title: ["", Validators.required],
 			description: "",

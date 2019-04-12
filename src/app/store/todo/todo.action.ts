@@ -52,6 +52,7 @@ export class DeleteTodo {
 }
 export class DeleteTodoSuccess implements Action {
 	readonly type = DELETE_TODO_SUCCESS;
+	constructor(public payload: Todo) {}
 }
 
 export type All =

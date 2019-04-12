@@ -3,7 +3,7 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import * as TodoAction from "../../../store/todo/todo.action";
-import { tap } from "rxjs/operators";
+import { tap, find } from "rxjs/operators";
 import { TodoEditionComponent } from "../todo-edition/todo-edition.component";
 import { MatDialog } from "@angular/material";
 
@@ -37,9 +37,16 @@ export class TodoListComponent implements OnInit {
 
 	onSelected(todoId, todoIsDone) {
 		todoIsDone = !todoIsDone;
-		this.store.dispatch(
-			new TodoAction.UpdateTodo({ isDone: todoIsDone, id: todoId })
-		);
+
+		let todoUpdated;
+
+		this.store
+			.select(state => state.todoState.todos)
+			.subscribe(data => {
+				todoUpdated = data.find(todo => todo.id == todoId);
+				todoUpdated.isDone = todoIsDone;
+			});
+		this.store.dispatch(new TodoAction.UpdateTodo(todoUpdated));
 	}
 
 	onNewTodo() {
